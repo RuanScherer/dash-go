@@ -1,4 +1,5 @@
 import { Box, Icon, Link, Stack, Text } from "@chakra-ui/react";
+import NextLink from "next/link";
 import { RiContactsLine, RiDashboardLine, RiGitMergeLine, RiInputMethodLine } from "react-icons/ri";
 
 export default function Sidebar() {
@@ -23,19 +24,19 @@ export default function Sidebar() {
             mt="8" 
             alignItems="stretch"
           >
-            <Link 
-              display="flex"
-              alignItems="center"
-              color="pink.400"
-            >
-              <Icon as={RiDashboardLine} fontSize="20" />
-              <Text ml="4" fontWeight="medium">Dashboard</Text>
-            </Link>
+            <NextLink href="/dashboard">
+              <Link display="flex" alignItems="center">
+                <Icon as={RiDashboardLine} fontSize="20" />
+                <Text ml="4" fontWeight="medium">Dashboard</Text>
+              </Link>
+            </NextLink>
 
-            <Link display="flex" alignItems="center">
-              <Icon as={RiContactsLine} fontSize="20" />
-              <Text ml="4" fontWeight="medium">Usuários</Text>
-            </Link>
+            <NextLink href="/users">
+              <Link display="flex" alignItems="center">
+                <Icon as={RiContactsLine} fontSize="20" />
+                <Text ml="4" fontWeight="medium">Usuários</Text>
+              </Link>
+            </NextLink>
           </Stack>
         </Box>
 
