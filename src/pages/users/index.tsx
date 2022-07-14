@@ -1,9 +1,10 @@
-import { Box, Button, Checkbox, Flex, Heading, Icon, Table, Tbody, Td, Text, Th, Thead, Tr } from "@chakra-ui/react";
+import { Box, Button, Flex, Heading, Icon } from "@chakra-ui/react";
 import Link from "next/link";
-import { RiAddLine, RiPencilLine } from "react-icons/ri";
+import { RiAddLine } from "react-icons/ri";
 import Header from "../../components/Header";
 import Pagination from "../../components/Pagination";
 import Sidebar from "../../components/Sidebar";
+import UsersTable from "../../components/UsersTable";
 
 export default function UserList() {
   return (
@@ -47,111 +48,7 @@ export default function UserList() {
             </Link>
           </Flex>
 
-          <Table
-            colorScheme="whiteAlpha"
-          >
-            <Thead>
-              <Tr>
-                <Th
-                  px="6"
-                  color="gray.300"
-                  width="8"
-                >
-                  <Checkbox colorScheme="pink" />
-                </Th>
-                <Th>Usuário</Th>
-                <Th>Data de cadastro</Th>
-                <Th>Ações</Th>
-              </Tr>
-            </Thead>
-
-            <Tbody>
-              <Tr>
-                <Td px="6">
-                  <Checkbox colorScheme="pink" />
-                </Td>
-                <Td>
-                  <Box>
-                    <Text fontWeight="bold">Ruan Scherer</Text>
-                    <Text fontSize="small" color="gray.300">ruan.vscherer@gmail.com</Text>
-                  </Box>
-                </Td>
-                <Td>
-                  <Box>
-                    04 de Abril, 2021
-                  </Box>
-                </Td>
-                <Td>
-                  <Button
-                    as="a"
-                    size="sm"
-                    fontSize="sm"
-                    colorScheme="purple"
-                    leftIcon={<Icon as={RiPencilLine} fontSize="16" />}
-                  >
-                    Editar
-                  </Button>
-                </Td>
-              </Tr>
-
-              <Tr>
-                <Td px="6">
-                  <Checkbox colorScheme="pink" />
-                </Td>
-                <Td>
-                  <Box>
-                    <Text fontWeight="bold">Ruan Scherer</Text>
-                    <Text fontSize="small" color="gray.300">ruan.vscherer@gmail.com</Text>
-                  </Box>
-                </Td>
-                <Td>
-                  <Box>
-                    04 de Abril, 2021
-                  </Box>
-                </Td>
-                <Td>
-                  <Button
-                    as="a"
-                    size="sm"
-                    fontSize="sm"
-                    colorScheme="purple"
-                    leftIcon={<Icon as={RiPencilLine} fontSize="16" />}
-                  >
-                    Editar
-                  </Button>
-                </Td>
-              </Tr>
-
-              <Tr>
-                <Td px="6">
-                  <Checkbox colorScheme="pink" />
-                </Td>
-                <Td>
-                  <Box>
-                    <Text fontWeight="bold">Ruan Scherer</Text>
-                    <Text fontSize="small" color="gray.300">ruan.vscherer@gmail.com</Text>
-                  </Box>
-                </Td>
-                <Td>
-                  <Box>
-                    04 de Abril, 2021
-                  </Box>
-                </Td>
-                <Td>
-                  <Button
-                    as="a"
-                    size="sm"
-                    fontSize="sm"
-                    colorScheme="purple"
-                    leftIcon={<Icon as={RiPencilLine} fontSize="16" />}
-                  >
-                    Editar
-                  </Button>
-                </Td>
-              </Tr>
-            </Tbody>
-          </Table>
-
+          <UsersTable />
           <Pagination />
         </Box>
       </Flex>
