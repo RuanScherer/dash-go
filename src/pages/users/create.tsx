@@ -21,7 +21,7 @@ export default function CreateUser() {
           flex="1"
           borderRadius={8}
           bgColor="gray.800"
-          p="8"
+          p={["6", "8"]}
         >
           <Heading size="lg" fontWeight="normal">
             Criar usuário
@@ -32,7 +32,7 @@ export default function CreateUser() {
           <VStack spacing="8">
             <SimpleGrid 
               minChildWidth="240px" 
-              spacing="8" 
+              spacing={["6", "8"]}
               width="100%"
             >
               <Input name="name" label="Nome Completo" />
@@ -41,7 +41,7 @@ export default function CreateUser() {
 
             <SimpleGrid 
               minChildWidth="240px" 
-              spacing="8" 
+              spacing={["6", "8"]}
               width="100%"
             >
               <Input name="password" type="password" label="Senha" />
