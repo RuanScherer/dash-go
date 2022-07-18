@@ -7,6 +7,7 @@ export default function SignIn() {
     <Flex
       w="100vw"
       h="100vh"
+      p={["4", "6"]}
       alignItems="center"
       justifyContent="center"
     >
@@ -15,7 +16,7 @@ export default function SignIn() {
         w="100%"
         maxWidth={360}
         bgColor="gray.800"
-        p={8}
+        p={["6", "8"]}
         borderRadius={8}
         flexDirection="column"
       >
