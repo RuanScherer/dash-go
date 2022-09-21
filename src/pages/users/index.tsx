@@ -1,12 +1,15 @@
-import { Box, Button, Flex, Heading, Icon } from "@chakra-ui/react";
+import { Box, Button, Flex, Heading, Icon, Spinner, Text } from "@chakra-ui/react";
 import Link from "next/link";
 import { RiAddLine } from "react-icons/ri";
 import Header from "../../components/Header";
 import Pagination from "../../components/Pagination";
 import Sidebar from "../../components/Sidebar";
 import UsersTable from "../../components/UsersTable";
+import { useUsers } from "../../services/hooks/useUsers";
 
 export default function UserList() {
+  const { data, isLoading, isFetching, error } = useUsers()
+
   return (
     <Box>
       <Header />
@@ -33,6 +36,13 @@ export default function UserList() {
           >
             <Heading size="lg" fontWeight="normal">
               Usuários
+              {(isFetching && !isLoading) && (
+                <Spinner 
+                  size="sm"
+                  color="gray.500"
+                  ml="4"
+                />
+              )}
             </Heading>
 
             <Link href="/users/create" passHref>
@@ -48,8 +58,20 @@ export default function UserList() {
             </Link>
           </Flex>
 
-          <UsersTable />
-          <Pagination />
+          {isLoading ? (
+            <Flex justify="center">
+              <Spinner />
+            </Flex>
+          ) : error ? (
+            <Flex justify="center">
+              <Text>Falha ao obter dados do usuário.</Text>
+            </Flex>
+          ) : (
+            <>
+              <UsersTable users={data} />
+              <Pagination />
+            </>
+          )}
         </Box>
       </Flex>
     </Box>

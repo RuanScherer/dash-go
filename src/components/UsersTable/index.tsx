@@ -1,7 +1,18 @@
 import { Checkbox, Table, Tbody, Th, Thead, Tr, useBreakpointValue } from "@chakra-ui/react";
 import UserTableRow from "./UserTableRow";
 
-export default function UsersTable() {
+interface UsersTableProps {
+  users: User[]
+}
+
+type User = {
+  id: string
+  name: string
+  email: string
+  createdAt: string
+}
+
+export default function UsersTable({ users }: UsersTableProps) {
   const isWideVersion = useBreakpointValue({
     base: false,
     lg: true
@@ -25,9 +36,7 @@ export default function UsersTable() {
       </Thead>
 
       <Tbody>
-        <UserTableRow />
-        <UserTableRow />
-        <UserTableRow />
+        {users.map(user => <UserTableRow user={user} key={user.id} /> )}
       </Tbody>
     </Table>
   )

@@ -1,7 +1,18 @@
 import { Box, Button, Checkbox, Icon, Td, Text, Tr, useBreakpointValue } from "@chakra-ui/react";
 import { RiPencilLine } from "react-icons/ri";
 
-export default function UserTableRow() {
+interface UserTableRowProps {
+  user: User
+}
+
+type User = {
+  id: string
+  name: string
+  email: string
+  createdAt: string
+}
+
+export default function UserTableRow({ user }: UserTableRowProps) {
   const isWideVersion = useBreakpointValue({
     base: false,
     lg: true
@@ -14,14 +25,14 @@ export default function UserTableRow() {
       </Td>
       <Td>
         <Box>
-          <Text fontWeight="bold">Ruan Scherer</Text>
-          <Text fontSize="small" color="gray.300">ruan.vscherer@gmail.com</Text>
+          <Text fontWeight="bold">{user.name}</Text>
+          <Text fontSize="small" color="gray.300">{user.email}</Text>
         </Box>
       </Td>
       {isWideVersion && 
         <Td>
           <Box>
-            04 de Abril, 2021
+            {user.createdAt}
           </Box>
         </Td>
       }
