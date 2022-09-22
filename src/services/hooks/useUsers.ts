@@ -1,6 +1,11 @@
 import { useQuery } from "react-query"
 import { api } from "../api"
 
+interface FetchUsersFunctionReturn {
+  users: User[]
+  totalCountOfRegisters: number
+}
+
 type User = {
   id: string
   name: string
@@ -8,8 +13,13 @@ type User = {
   createdAt: string
 }
 
-async function fetchUsers(): Promise<User[]> {
-  const { data } = await api.get("/users")
+async function fetchUsers(page: number, perPage: number): Promise<FetchUsersFunctionReturn> {
+  const { data, headers } = await api.get("/users", {
+    params: {
+      page,
+      per_page: perPage
+    }
+  })
   const users = data.users.map(user => ({
     ...user,
     createdAt: new Date(user.createdAt).toLocaleDateString("pt-BR", {
@@ -18,14 +28,23 @@ async function fetchUsers(): Promise<User[]> {
       year: "numeric"
     })
   }))
-  return users
+  const totalCountOfRegisters = Number(headers["x-total-count"])
+  return { users, totalCountOfRegisters }
 }
 
-function useUsers() {
+interface UseUserProps {
+  page: number
+  perPage: number
+}
+
+function useUsers(props: UseUserProps) {
   const SECOND = 1000
-  return useQuery("users", fetchUsers, {
-    staleTime: 5 * SECOND
-  })
+  const MINUTE = 60 * SECOND
+  return useQuery(
+    ["users", props?.page],
+    () => fetchUsers(props?.page, props?.perPage),
+    { staleTime: 10 * MINUTE }
+  )
 }
 
 export { useUsers }

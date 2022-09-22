@@ -15,11 +15,11 @@ export function makeServer() {
 
     factories: {
       user: Factory.extend({
-        name(index) {
-          return `User ${index + 1}`
+        name() {
+          return faker.name.firstName() + " " + faker.name.lastName()
         },
         email() {
-          faker.internet.email().toLowerCase()
+          return faker.internet.email().toLowerCase()
         },
         createdAt() {
           return faker.date.recent(10)
@@ -33,7 +33,7 @@ export function makeServer() {
 
     routes() {
       this.namespace = "api"
-      this.timing = 750
+      this.timing = 1000
 
       this.get("/users", function (schema, request) {
         const { page = 1, per_page = 10 } = request.queryParams
@@ -52,6 +52,7 @@ export function makeServer() {
           { users }
         )
       })
+      this.get("/users/:id")
       this.post("/users")
 
       this.namespace = ""

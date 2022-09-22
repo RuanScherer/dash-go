@@ -1,5 +1,6 @@
 import { Box, Button, Flex, Heading, Icon, Spinner, Text } from "@chakra-ui/react";
 import Link from "next/link";
+import { useState } from "react";
 import { RiAddLine } from "react-icons/ri";
 import Header from "../../components/Header";
 import Pagination from "../../components/Pagination";
@@ -7,8 +8,14 @@ import Sidebar from "../../components/Sidebar";
 import UsersTable from "../../components/UsersTable";
 import { useUsers } from "../../services/hooks/useUsers";
 
+const registersPerPage = 20
+
 export default function UserList() {
-  const { data, isLoading, isFetching, error } = useUsers()
+  const [currentPage, setCurrentPage] = useState(1)
+  const { data, isLoading, isFetching, error } = useUsers({
+    page: currentPage,
+    perPage: registersPerPage
+  })
 
   return (
     <Box>
@@ -68,8 +75,13 @@ export default function UserList() {
             </Flex>
           ) : (
             <>
-              <UsersTable users={data} />
-              <Pagination />
+              <UsersTable users={data.users} />
+              <Pagination
+                totalCountOfRegisters={data.totalCountOfRegisters}
+                currentPage={currentPage}
+                registersPerPage={registersPerPage}
+                onPageChange={setCurrentPage}
+              />
             </>
           )}
         </Box>
