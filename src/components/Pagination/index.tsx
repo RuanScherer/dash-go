@@ -48,7 +48,7 @@ export default function Pagination({
       <Box>
         <strong>{startRegisterNumber}</strong>
         {" "}-{" "}
-        <strong>{endRegisterNumber}</strong>
+        <strong>{Math.min(endRegisterNumber, totalCountOfRegisters)}</strong>
         {" "}de{" "}
         <strong>{totalCountOfRegisters}</strong>
       </Box>
